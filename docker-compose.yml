@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:  
+  node:
+    build: 
+      args:
+        uid: 1000
+      context: .
+      dockerfile: Dockerfile
+    image: todo/node
+    container_name: nodejs
+    volumes:
+      - .:/srv/
+    working_dir: /srv/
