@@ -1,7 +1,7 @@
 <template>
     <span class="todo-item">
-        <input type="checkbox" :id=item :name=item :checked=isChecked>
-        <label :for=item>{{ this.item }}</label>
+        <input type="checkbox" :id="name" :name="name" :checked="modelValue" @input="$emit('update:modelValue', $event.target.checked)">
+        <label :for="name">{{ this.name }}</label>
     </span>
 </template>
 
@@ -10,15 +10,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent ({
   props: {
-    name: { type:String, required:true},
-    val: Boolean,
+    name: { 
+      type:String, 
+      required:true
+    },
+    modelValue: Boolean,
   },
-  data() {
-    return {
-      item: this.name,
-      isChecked: this.val,
-    }
-  }
+  emits: ['update:modelValue'],
 })
 
 </script>
@@ -26,6 +24,7 @@ export default defineComponent ({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .todo-item{
+    margin: 1rem 0;
     width: max-content;
     
     & input{
