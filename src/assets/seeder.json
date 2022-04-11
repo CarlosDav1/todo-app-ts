@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Study TS",
+    "completed": false
+  },
+  {
+    "name": "Do laundry",
+    "completed": false
+  },
+  {
+    "name": "Cook dinner",
+    "completed": false
+  }
+]
