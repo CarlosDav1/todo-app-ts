@@ -1,8 +1,11 @@
 <template>
-    <span class="todo-item">
+    <div class="todo-item">
+      <span @mouseover="itemHover" @click="$emit('update:modelValue', $event.target.checked)">
         <input type="checkbox" :id="name" :name="name" :checked="modelValue" @input="$emit('update:modelValue', $event.target.checked)">
         <label :for="name">{{ this.name }}</label>
-    </span>
+      </span>
+      <button>Delete</button>
+    </div>
 </template>
 
 <script lang="ts">
@@ -16,6 +19,11 @@ export default defineComponent ({
     },
     modelValue: Boolean,
   },
+  methods: {
+    itemHover(){
+      console.log('eee')
+    }
+  },
   emits: ['update:modelValue'],
 })
 
@@ -24,8 +32,17 @@ export default defineComponent ({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .todo-item{
-    margin: 1rem 0;
-    width: max-content;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.125rem 0;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    border-radius: 0.25rem;
+    border: solid transparent 1px;
+
+    &:hover{
+      background-color: #AACCE4;
+      border-color: #56CBF9;
+    }
     
     & input{
         margin: 0;
