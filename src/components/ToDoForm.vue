@@ -1,7 +1,7 @@
 <template>
     <div class="todo-form">
-        <input v-model="currentItem"/>
-        <button @click="add()">Add item</button>
+        <input v-model="currentItem" required/>
+        <button @click="$emit('addItem', {name:currentItem, completed:false})">Add item</button>
     </div>
 </template>
 
@@ -9,23 +9,11 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    props:{
-        addItem: {
-            type:Function, 
-            required:true
-        }
-    },
     data() {
         return {
             currentItem: '',
         }
     },
-    methods:{
-        add(){
-            this.addItem({name:this.currentItem, completed:false});
-            this.currentItem = '';
-        }
-    }
 });
 </script>
 

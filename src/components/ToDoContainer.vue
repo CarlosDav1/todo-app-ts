@@ -1,7 +1,7 @@
 <template>
     <div class='todo-container'>
         <ToDoItem v-for="(item, index) in todoList" :key="index" :name="item.name" v-model="item.completed" />
-        <ToDoForm :add-item="addItem"/>
+        <ToDoForm @add-item="addItem"/>
     </div>
 </template>
 
@@ -24,7 +24,9 @@ export default defineComponent({
     },
     methods: {
         addItem(item: TodoItemType){
-            this.todoList.push(item);
+            if(item.name.trim().length > 0) {
+                this.todoList.push(item);
+            }
         }
     }
 });
