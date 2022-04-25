@@ -1,6 +1,6 @@
 <template>
     <div class='todo-container'>
-        <ToDoItem v-for="(item, index) in todoList" :key="index" :name="item.name" v-model="item.completed" />
+        <ToDoItem v-for="(item, index) in todoList" :key="index" :id="index" :name="item.name" v-model="item.completed" @deleteItem="deleteItem" />
         <ToDoForm @add-item="addItem"/>
     </div>
 </template>
@@ -27,6 +27,9 @@ export default defineComponent({
             if(item.name.trim().length > 0) {
                 this.todoList.push(item);
             }
+        },
+        deleteItem(index: number){
+            this.todoList.splice(index, 1);
         }
     }
 });

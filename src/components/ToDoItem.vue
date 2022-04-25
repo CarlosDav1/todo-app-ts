@@ -4,7 +4,7 @@
         <input type="checkbox" :id="name" :name="name" :checked="modelValue" @input="$emit('update:modelValue', $event.target.checked)">
         <label :for="name">{{ this.name }}</label>
       </span>
-      <button>Delete</button>
+      <button @click="deleteItem">Delete</button>
     </div>
 </template>
 
@@ -13,6 +13,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent ({
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: { 
       type:String, 
       required:true
@@ -22,9 +26,12 @@ export default defineComponent ({
   methods: {
     itemHover(){
       console.log('eee')
+    },
+    deleteItem(){
+      this.$emit('deleteItem', this.id)
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'deleteItem'],
 })
 
 </script>
